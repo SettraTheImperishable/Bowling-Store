@@ -4,7 +4,7 @@ class CreateOrderLines < ActiveRecord::Migration[6.0]
       t.decimal :price, precision: 10, scale: 2
       t.integer :quantity
       t.references :order, null: false, foreign_key: true
-      t.references :product, null: false, foreign_key: true
+      t.references :product, null: true, foreign_key: true
 
       t.timestamps
     end
