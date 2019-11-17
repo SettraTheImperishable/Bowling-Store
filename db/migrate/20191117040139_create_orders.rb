@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrders < ActiveRecord::Migration[6.0]
   def change
     create_table :orders do |t|
@@ -6,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.integer :sale_tax_rate
       t.decimal :total, precision: 10, scale: 2
       t.references :tax, null: false, foreign_key: true
+      t.references :account, null: false, foreign_key: true
 
       t.timestamps
     end
