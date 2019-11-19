@@ -2,7 +2,7 @@ class CreateTaxes < ActiveRecord::Migration[6.0]
   def change
     create_table :taxes do |t|
       t.string :province
-      t.integer :rate
+      t.decimal :rate, precision: 10, scale: 2
 
       t.timestamps
     end

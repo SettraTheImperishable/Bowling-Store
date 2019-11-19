@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
     create_table :orders do |t|
       t.integer :size
       t.decimal :subtotal, precision: 10, scale: 2
-      t.integer :sale_tax_rate
+      t.decimal :sale_tax_rate, precision: 10, scale: 2
       t.decimal :total, precision: 10, scale: 2
       t.references :tax, null: false, foreign_key: true
       t.references :account, null: false, foreign_key: true
