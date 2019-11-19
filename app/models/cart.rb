@@ -2,5 +2,5 @@
 
 class Cart < ApplicationRecord
   belongs_to :account
-  has_many :order_lines
+  has_many :items
 end
