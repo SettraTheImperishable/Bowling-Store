@@ -6,4 +6,5 @@ class Item < ApplicationRecord
 
   validates :quantity, :price, presence: true
   validates :quantity, numericiality: { only_integer: true }
+  validates :price, format: { with: /\A[+-]?\d+\z/, messsage: 'Integer only. No sign allowed.' }
 end
