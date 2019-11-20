@@ -5,6 +5,6 @@ class Item < ApplicationRecord
   belongs_to :product
 
   validates :quantity, :price, presence: true
-  validates :quantity, numericiality: { only_integer: true }
-  validates :price, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: { greater_than: 0 }
+  validates :quantity, numericality: { only_integer: true }
+  validates :price, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }
 end
