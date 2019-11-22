@@ -1,0 +1,10 @@
+<div class="product">
+  <h1><%= product.name %></h1>
+  <h3><%= product.price %></h3>
+  <p>Description: <%= product.description %></p>
+  <% if product.image.present? %>
+    <figure>
+      <%= image_tag product.image %>
+    </figure>
+  <% end %>
+</div>
