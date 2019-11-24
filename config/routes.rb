@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'pages/show'
+  get 'pages/:permalink', to: 'pages#permalink', as: 'permalink'
   resources :categories, only: %i[index show]
 
   resources :products, only: %i[index show]
