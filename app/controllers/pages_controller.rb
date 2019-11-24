@@ -7,6 +7,11 @@ class PagesController < ApplicationController
 
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
-    render :show # points to the show.html.erb
+
+    if @page
+      render :show # points to the show.html.erb
+    else
+      redirect_to root_path
+    end
   end
 end
