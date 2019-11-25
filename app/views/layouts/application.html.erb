@@ -22,8 +22,12 @@
       </nav>
 
       <%= form_with(url: search_results_products_path, method: "get", local: true) do %>
-        <%= label_tag(:query, "Search for:") %>
+        <% categories_array = Category.all.map { |category| [category.name, category.id] } %>
+        <% categories_array.insert(0, ['All', nil]) %>
+        <%= label_tag(:query, "Search products for:") %>
         <%= text_field_tag(:query) %>
+        <%= label_tag(:category_id, " from ") %>
+        <%= select_tag(:category_id, options_for_select(categories_array)) %>
         <%= submit_tag("Search") %>
       <% end %>
     </header>

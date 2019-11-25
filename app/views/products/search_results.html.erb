@@ -1,5 +1,9 @@
 <p>
-  Your search for '<%= @query %>' returned <%= pluralize(@products.size, 'result') %>.
+  Your search for '<%= @query %>'
+  <% unless !@category %>
+    in <%= @category.name %>
+  <% end %>
+  returned <%= pluralize(@products.size, 'result') %>.
 </p>
 
 <div>

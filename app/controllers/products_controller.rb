@@ -10,7 +10,13 @@ class ProductsController < ApplicationController
   end
 
   def search_results
+    @category = Category.find(params[:category_id]) if params[:category_id] != ''
     @query = params[:query]
-    @products = Product.where('name LIKE ?', "%#{@query}%")
+    @products = if !@category
+                  Product.where('name LIKE ?', "%#{@query}%")
+                else
+                  Product.where('category_id LIKE ?', @category.id)
+                         .where('name LIKE ?', "%#{@query}%")
+                end
   end
 end
