@@ -9,7 +9,8 @@ class ProductsController < ApplicationController
     @products = Product.all.page(params[:page]).per(5)
   end
 
-  def search_results;
-
+  def search_results
+    @query = params[:query]
+    @products = Product.where('name LIKE ?', "%#{@query}%")
   end
 end
