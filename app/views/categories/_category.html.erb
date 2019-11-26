@@ -21,9 +21,10 @@
     <h4 class="subtitle is-5">
       <%= category.description %>
     </h4>
-
-    <%= render partial: 'products/product',
-            collection: category.products,
-            locals: { name_is_link: true } %>
+    <div class="columns is-multiline is-tablet is-desktop">
+      <%= render partial: 'products/product',
+              collection: category.products,
+              locals: { name_is_link: true } %>
+    </div>
   </div>
 <% end %>
