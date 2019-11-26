@@ -19,4 +19,18 @@ class ProductsController < ApplicationController
                          .where('name LIKE ?', "%#{@query}%")
                 end
   end
+
+  def add_to_cart
+    id = params[:product_id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    flash[:item_changed] = 'Item successfully added to your cart!'
+    redirect_back(fallback_location: root_path)
+  end
+
+  def remove_from_cart
+    id = params[:product_id].to_i
+    session[:cart].delete(id)
+    flash[:item_changed] = 'Item successfully removed to your cart!'
+    redirect_back(fallback_location: root_path)
+  end
 end
