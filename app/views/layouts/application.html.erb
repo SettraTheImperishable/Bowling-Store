@@ -42,8 +42,14 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-                  <%= link_to 'Sign Up', '#', class: "button is-primary" %>
-                  <%= link_to 'Log In', '#', class: "button is-light" %>
+                  <% if user_signed_in? %>
+                    Logged in as <strong><%= current_user.email %></strong>.
+                    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'button is-primary' %> |
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'button is-light'  %>
+                  <% else %>
+                    <%= link_to 'Sign Up', new_user_registration_path, class: "button is-primary" %>
+                    <%= link_to 'Log In', new_user_session_path, class: "button is-light" %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -77,6 +83,13 @@
           <p><%= flash[:item_changed] %></p>
         <% end %>
       </header>
+
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
     </section>
 
     <section class="section">

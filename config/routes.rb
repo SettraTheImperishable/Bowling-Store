@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   get 'pages/:permalink', to: 'pages#permalink', as: 'permalink'
   resources :categories, only: %i[index show]
 
