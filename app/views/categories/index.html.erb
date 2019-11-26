@@ -1,7 +1,9 @@
-<h1>Categories!</h1>
+<h3 class="title is-3">Categories</h3>
 
-<%= render partial: 'category',
-           collection: @categories,
-           locals: {
-             name_is_link: true,
-             shows_products: false } %>
+<div class="columns is-multiline">
+  <%= render partial: 'category',
+            collection: @categories,
+            locals: {
+              name_is_link: true,
+              shows_products: false } %>
+</div>
