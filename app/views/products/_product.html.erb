@@ -1,24 +1,32 @@
-<% if name_is_link %>
-  <h2>
-    <%= link_to product.name, product %>
-  </h2>
-<% else %>
-  <h2>
-    <%= product.name %>
-  </h2>
-<% end %>
-<h4>
-  <strong>Product Price: </strong>
-  $<%= product.price %>
-</h4>
-<p>Description: <%= product.description %></p>
-<% if product.image.present? %>
-  <figure>
-    <%= image_tag product.image %>
-  </figure>
-<% end %>
-<% if @cart.include?(product) %>
-  <p><%= button_to 'remove from cart',  remove_from_cart_path(product), method: :delete %></p>
-<% else %>
-  <p><%= button_to 'add to cart', add_to_cart_path(product.id), method: :post %></\p>
-<% end %>
+<div class="column">
+  <div class="card product">
+    <% if product.image.present? %>
+      <div class="card-image">
+        <figure class="image">
+          <%= image_tag product.image %>
+        </figure>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <% if name_is_link %>
+        <p class="title is-4">
+          <%= link_to product.name, product %>
+        </p>
+      <% else %>
+        <h3 class="title is-4">
+          <%= product.name %>
+        </h3>
+      <% end %>
+      <p class="subtitle is-5">
+        <strong>Product Price: </strong>
+        $<%= product.price %>
+      <p>
+      <p>Description: <%= product.description %></p>
+      <% if @cart.include?(product) %>
+        <p><%= button_to 'remove from cart',  remove_from_cart_path(product), method: :delete %></p>
+      <% else %>
+        <p><%= button_to 'add to cart', add_to_cart_path(product.id), method: :post %></\p>
+      <% end %>
+    </div>
+  </div>
+</div>
