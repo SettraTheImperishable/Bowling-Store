@@ -4,6 +4,11 @@
       <div class="card-image">
         <figure class="image">
           <%= image_tag product.image %>
+<%
+=begin%>
+<%= image_tag product.image.variant(resize_to_limit: [100,100]).processed %>
+<%
+=end%>
         </figure>
       </div>
     <% end %>
