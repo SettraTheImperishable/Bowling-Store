@@ -22,4 +22,3 @@ test:
 
 production:
   url: <%= ENV['DATABASE_URL'] %> # postgres://user:pass@host:123
-
