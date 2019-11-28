@@ -77,8 +77,22 @@
           <% else %>
             <ul>
               <% @cart.each do |item| %>
-                <% product = Product.find(item['product_id'].to_i) %>
-                <li><%= product.name %> x<%= item['quantity'] %> -  <%= link_to 'remove from cart',  remove_from_cart_path(product.id), method: :delete %></li>
+                <%= form_with(url: edit_quantity_path, method: :post, local: true) do %>
+                  <% product = Product.find(item['product_id'].to_i) %>
+                  <li>
+                    <div class="buttons are-small">
+                      <%= link_to 'remove from cart',  remove_from_cart_path(product.id), method: :delete, class: 'button is-light' %>
+                      <%= submit_tag("Update", class: 'button is-primary is-light') %>
+                      <%= hidden_field_tag(:product_id, product.id) %>
+                      <%= label_tag(:quantity, "#{product.name}: ") %>
+                      <div class="field">
+                        <div class="control">
+                          <%= number_field_tag(:quantity, item['quantity'], class: "input is-primary")  %>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           <% end %>

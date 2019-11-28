@@ -22,16 +22,16 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     id = params[:product_id].to_i
-    isAdded = false
+    is_added = false
 
     session[:cart].each do |item|
       if item['product_id'].to_i == id
         item['quantity'] += 1
-        isAdded = true
+        is_added = true
       end
     end
 
-    unless isAdded
+    unless is_added
       session[:cart] << {
         'product_id' => id,
         'quantity' => 1
@@ -45,6 +45,18 @@ class ProductsController < ApplicationController
     id = params[:product_id].to_i
     session[:cart].delete_if { |item| item['product_id'].to_i == id }
     flash[:item_changed] = 'Item successfully removed to your cart!'
+    redirect_back(fallback_location: root_path)
+  end
+
+  def edit_quantity
+    quantity = params[:quantity].to_i
+    id = params[:product_id].to_i
+
+    if quantity <= 0
+      session[:cart].delete_if { |item| item['product_id'].to_i == id }
+    else
+      session[:cart].map { |item| item['quantity'] = quantity if item['product_id'].to_i == id }
+    end
     redirect_back(fallback_location: root_path)
   end
 end

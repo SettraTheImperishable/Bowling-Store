@@ -27,11 +27,12 @@
         $<%= product.price %>
       <p>
       <p>Description: <%= product.description %></p>
-      <% if @cart.include?(product) %>
-        <p><%= button_to 'remove from cart',  remove_from_cart_path(product), method: :delete %></p>
-      <% else %>
-        <p><%= button_to 'add to cart', add_to_cart_path(product.id), method: :post %></\p>
-      <% end %>
+      <div class="buttons">
+        <%= button_to 'add to cart',
+            add_to_cart_path(product.id),
+            method: :post,
+            class: "button is-primary is-small" %>
+      </div>
     </div>
   </div>
 </div>
